@@ -52,11 +52,13 @@ th{background:#F3EDFF;color:var(--koyu)}
 <tr><th>Veri</th><th>Ne için</th></tr>
 <tr><td>Google ile girişte e-posta adresin ve Google hesap kimliğin</td><td>Hesabını tanımak ve girişini sağlamak. E-posta adresin uygulamada hiçbir ekranda gösterilmez.</td></tr>
 <tr><td>Adın ya da takma adın, kullanıcı adın</td><td>Sana seslenmek ve arkadaşlarının seni bulabilmesi.</td></tr>
-<tr><td>Doğum tarihin (ve buna göre burcun)</td><td>Burç ve fal içeriği; 13 yaş sınırının kontrolü.</td></tr>
+<tr><td>Doğum tarihin (ve buna göre burcun); istersen doğum saatin ve doğum yerin</td><td>Burç, yükselen burç ve fal içeriği; 13 yaş sınırının kontrolü.</td></tr>
+<tr><td>Cinsiyetin</td><td>Soruları, karakterleri ve fal yorumlarını sana göre uyarlamak.</td></tr>
 <tr><td>"Ne arıyorsun?" seçimlerin, sorulara verdiğin cevaplar ve cevap süreleri</td><td>Kişilik sonuçlarını ve karakterini hesaplamak.</td></tr>
 <tr><td>Günlük kart, fal, ritüel, ışık, seviye ve rozet kayıtların</td><td>Oyun ilerlemeni ve günlük içeriğini saklamak.</td></tr>
 <tr><td>Arkadaşlık bağlantıların, uygulama içi mesajların, tahmin oyunu sonuçların ve davet kodun</td><td>Sosyal özellikleri sunmak.</td></tr>
-<tr><td>Kimliğini içermeyen kullanım ölçümleri (hangi ekranın açıldığı, uygulama sürümü, cihaz modeli gibi)</td><td>Uygulamayı geliştirmek ve hataları bulmak.</td></tr>
+<tr><td>Engellediğin kullanıcılar ve gönderdiğin bildirimler (şikâyetler)</td><td>Seni istenmeyen kişilerden korumak ve kurallara aykırı içeriği incelemek.</td></tr>
+<tr><td>Adını ve e-postanı içermeyen kullanım ölçümleri (hangi ekranın açıldığı, uygulama sürümü, cihaz modeli, uygulamaya özel rastgele bir cihaz kimliği gibi)</td><td>Uygulamayı geliştirmek ve hataları bulmak.</td></tr>
 </table>
 <p>Bildirim saati, ses ve titreşim tercihlerin yalnızca telefonunda saklanır.</p>
 
@@ -66,7 +68,8 @@ th{background:#F3EDFF;color:var(--koyu)}
 <h2>4. Verilerin kimlerle paylaşılır?</h2>
 <ul>
 <li><b>Supabase</b> (veritabanı ve giriş altyapısı): Verilerin Supabase'in Frankfurt'taki (Avrupa Birliği) sunucularında saklanır.</li>
-<li><b>Google</b> (Google ile giriş ve Firebase Analytics): Giriş için Google hesabın, kullanım ölçümleri için kimliğini içermeyen olaylar Google'a iletilir.</li>
+<li><b>Google</b> (Google ile giriş ve Firebase Analytics): Giriş için Google hesabın, kullanım ölçümleri için adını ve e-postanı içermeyen olaylar Google'a iletilir.</li>
+<li><b>Groq</b> (yapay zekâ ile fal yorumu üretimi): Günlük fal yorumunu yazmak için yalnızca burcun, yaş grubun ve cinsiyetin Groq'un ABD'deki sunucularına iletilir; adın, e-postan ya da hesap kimliğin iletilmez.</li>
 <li><b>Diğer kullanıcılar:</b> Görünen adın ve kullanıcı adın arkadaşlarına görünür. Karakter sonuçların, görünürlüğünü açtıysan arkadaşlarına görünür; bunu tahmin oyunu sonuçları ekranından kapatabilirsin. Mesajların yalnızca gönderdiğin kişiye iletilir.</li>
 </ul>
 <p>Bu hizmet sağlayıcıların sunucuları yurt dışında bulunduğundan verilerin yurt dışına aktarılır; bu aktarım uygulamaya girişte verdiğin açık rızaya dayanır. <b>Verilerin satılmaz ve reklam amacıyla paylaşılmaz.</b></p>
