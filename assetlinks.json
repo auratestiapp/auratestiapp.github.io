@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.auratesti.aura_testi",
+      "sha256_cert_fingerprints": [
+        "F9:EB:37:D2:96:4F:E8:8C:67:BE:E8:C8:51:01:AA:68:36:1A:B5:62:C9:68:4E:F0:F4:99:EF:4C:87:C3:9B:55",
+        "46:0B:E5:9A:41:55:39:54:E9:12:E9:DD:AD:83:2C:9E:5B:43:45:A8:65:C5:28:03:76:4E:79:04:28:A9:3A:8B"
+      ]
+    }
+  }
+]
