@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Beni ne kadar tanıyorsun? · Aura</title>
+<meta name="description" content="10 soruda tahmin et; bakalım ruh ikizi miyiz! Kurulum gerekmez.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#EDE4FF">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aura">
+<meta property="og:title" content="Beni ne kadar tanıyorsun? 🔮">
+<meta property="og:description" content="10 soruda tahmin et; bakalım ruh ikizi miyiz! Kurulum gerekmez, linkten oynanır.">
+<meta property="og:image" content="https://auratestiapp.github.io/oyna/onizleme.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!--
+  Plan 4.2 (8 Kasım 2026): kurulumsuz tahmin oyunu.
+  Link: https://auratestiapp.github.io/oyna/?k=KOD  (uygulama yüklüyse Android linki doğrudan uygulamaya verir)
+  Sunucu: 93_web_tahmin.sql › tahmin_oyunu_web, tahmin_oyunu_web_bitir (giriş gerekmez; yalnız herkese açık anahtar)
+  "Aura'yı indir": Play'e kod ve web sonucunun anahtarı (referrer) gider; uygulama ilk açılışta okur.
+-->
+<style>
+@font-face{font-family:"Playfair Display";font-style:normal;font-weight:600;font-display:swap;src:url(../yazi/playfair-display-latin-600-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Playfair Display";font-style:normal;font-weight:600;font-display:swap;src:url(../yazi/playfair-display-latin-ext-600-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Nunito;font-style:normal;font-weight:700;font-display:swap;src:url(../yazi/nunito-latin-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Nunito;font-style:normal;font-weight:700;font-display:swap;src:url(../yazi/nunito-latin-ext-700-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Nunito;font-style:normal;font-weight:900;font-display:swap;src:url(../yazi/nunito-latin-900-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Nunito;font-style:normal;font-weight:900;font-display:swap;src:url(../yazi/nunito-latin-ext-900-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+:root{--koyu:#3B2A78;--metin:#2E2152;--metin2:#5E5480;--mor:#7B5CC4;--morAcik:#B59BE8;--pembe:#E78AB5;--cizgi:#ECE6F8;--secili:#F1EAFF}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%}
+body{font-family:Nunito,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-weight:700;color:var(--metin);
+  background:linear-gradient(180deg,#EDE4FF 0%,#FBE7F1 55%,#FFF7F0 100%) fixed;min-height:100vh;min-height:100dvh}
+.sahne{max-width:460px;margin:0 auto;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;
+  padding:max(14px,env(safe-area-inset-top)) 22px max(22px,env(safe-area-inset-bottom))}
+.ust{display:flex;align-items:center;justify-content:center;gap:8px;padding:6px 0 4px;color:var(--koyu);
+  font-weight:900;letter-spacing:4px;font-size:13px;text-decoration:none}
+.ust svg{width:15px;height:15px}
+.govde{flex:1;display:flex;flex-direction:column}
+.orta{flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center}
+h1,h2,.serif{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-weight:600;color:var(--koyu);margin:0}
+h1{font-size:30px;line-height:1.2}
+h2{font-size:26px;line-height:1.25}
+p{margin:0}
+.alt{color:var(--metin2);font-size:15.5px;line-height:1.5}
+.kucuk{color:var(--metin2);font-size:13px;line-height:1.5}
+.bosluk{height:16px}.bosluk2{height:26px}
+.avatar{width:92px;height:92px;border-radius:50%;margin:0 auto 18px;padding:3px;
+  background:conic-gradient(from 210deg,#8E6BD8,#E78AB5,#F4C77A,#8E6BD8)}
+.avatar span{display:flex;width:100%;height:100%;border-radius:50%;background:#fff;align-items:center;justify-content:center;
+  font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:40px;color:var(--mor)}
+.dugme{display:flex;align-items:center;justify-content:center;width:100%;min-height:54px;border:0;border-radius:27px;cursor:pointer;
+  background:linear-gradient(90deg,#8E6BD8,var(--pembe));color:#fff;font:inherit;font-weight:900;font-size:16.5px;text-decoration:none;
+  box-shadow:0 4px 12px rgba(231,138,181,.35);padding:0 20px;transition:transform .12s}
+.dugme:active{transform:scale(.98)}
+.dugme[disabled]{opacity:.6}
+.ikinci{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;border-radius:26px;cursor:pointer;
+  background:#fff;color:var(--mor);border:1.4px solid var(--morAcik);font:inherit;font-weight:900;font-size:15.5px;text-decoration:none;padding:0 18px}
+.yazi-dugme{background:none;border:0;color:var(--mor);font:inherit;font-weight:900;font-size:14.5px;padding:12px;cursor:pointer;text-decoration:none;display:inline-block}
+.alan{width:100%;height:54px;border:1.4px solid var(--cizgi);border-radius:18px;background:#fff;text-align:center;
+  font:inherit;font-weight:900;font-size:18px;color:var(--metin);outline:none}
+.alan:focus{border-color:var(--mor)}
+.alan::placeholder{color:#B4ACCB;font-weight:700}
+.noktalar{display:flex;justify-content:center;gap:5px;margin:10px 0 0}
+.noktalar i{width:9px;height:9px;border-radius:50%;background:#fff;border:1px solid rgba(123,92,196,.4);transition:background .2s}
+.noktalar i.dolu{background:var(--mor)}
+.soru{flex:1;display:flex;flex-direction:column;justify-content:center;padding:18px 0;animation:gir .3s ease}
+@keyframes gir{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.soru-metni{font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:22px;line-height:1.3;color:var(--metin);text-align:center;margin-bottom:24px}
+.sik{width:100%;padding:18px;margin-bottom:12px;border-radius:20px;background:#fff;border:1.2px solid var(--cizgi);cursor:pointer;
+  font:inherit;font-weight:900;font-size:16.5px;line-height:1.3;color:var(--metin);box-shadow:0 4px 12px rgba(123,92,196,.08);
+  transition:background .18s,border-color .18s,opacity .2s,box-shadow .18s}
+.sik.secili{background:var(--secili);border:2px solid var(--mor);box-shadow:0 4px 12px rgba(123,92,196,.25)}
+.sik.soluk{opacity:.45}
+.yukleniyor{width:38px;height:38px;border-radius:50%;border:4px solid rgba(123,92,196,.2);border-top-color:var(--mor);margin:0 auto 16px;animation:don 0.9s linear infinite}
+@keyframes don{to{transform:rotate(360deg)}}
+.sonuc{border-radius:26px;padding:26px 22px 24px;text-align:center;color:#fff;
+  background:linear-gradient(135deg,#8E6BD8,#E78AB5);box-shadow:0 8px 24px rgba(231,138,181,.35)}
+.sonuc .etiket{font-weight:900;font-size:12px;letter-spacing:2px;opacity:.85}
+.sonuc .kim{font-size:16px;font-weight:900;margin-top:10px}
+.sonuc .skor{font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:64px;line-height:1.1;margin-top:10px}
+.sonuc .unvan{font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:26px}
+.fark{background:rgba(255,255,255,.92);color:var(--metin);border-radius:16px;padding:10px 14px;margin-top:8px;font-size:14.5px;line-height:1.45}
+.fark b{font-weight:900}.fark .p{color:var(--pembe)}.fark .m{color:var(--mor)}
+.davet{background:#fff;border:1px solid #fff;border-radius:22px;padding:18px;margin-top:18px;text-align:center;
+  box-shadow:0 5px 16px rgba(123,92,196,.10);background:linear-gradient(135deg,#F3ECFF,#FDEAF3)}
+.davet h2{font-size:21px;margin-bottom:6px}
+.alt-not{text-align:center;margin-top:18px}
+.alt-not a{color:var(--metin2)}
+.gizli{display:none!important}
+</style>
+</head>
+<body>
+<div class="sahne">
+  <a class="ust" href="../index.html" aria-label="Aura">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#E8B04B" d="M12 1.5c.6 4.9 2.6 8.4 9.5 10.5-6.9 2.1-8.9 5.6-9.5 10.5-.6-4.9-2.6-8.4-9.5-10.5C9.4 9.9 11.4 6.4 12 1.5z"/></svg>
+    AURA
+  </a>
+  <main class="govde" id="govde">
+    <div class="orta"><div class="yukleniyor"></div><p class="alt">Oyun hazırlanıyor…</p></div>
+  </main>
+</div>
+<noscript><p style="text-align:center;padding:20px">Oyunu oynamak için tarayıcında JavaScript açık olmalı.</p></noscript>
+<script>
+(function () {
+  'use strict';
+  // Supabase: yalnız herkese açık (publishable) anahtar; web fonksiyonları giriş istemez
+  var API = 'https://sntailjwlbkiubgjtfoa.supabase.co/rest/v1/rpc/';
+  var ANAHTAR = 'sb_publishable_tbb-jlvB9dJMpce74OXETA_y_fYeOLU';
+  var PAKET = 'com.auratesti.aura_testi';
+
+  var q = new URLSearchParams(location.search);
+  var ham = (q.get('k') || q.get('kod') || '').trim().toUpperCase();
+  var KOD = /^[A-Z0-9]{4,10}$/.test(ham) ? ham : null;
+  var KAYNAK = (q.get('s') || 'tahmin').replace(/[^a-z_]/gi, '').slice(0, 20) || 'tahmin';
+  var ua = navigator.userAgent || '';
+  var ANDROID = /Android/i.test(ua);
+  var IOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+  var govde = document.getElementById('govde');
+  var durum = { sahip: '', sorular: [], i: 0, tahmin: {}, secilen: null, ad: '' };
+
+  // ── yardımcılar ──
+  function el(etiket, ozellik) {
+    var e = document.createElement(etiket);
+    if (ozellik) for (var k in ozellik) {
+      if (k === 'metin') e.textContent = ozellik[k];
+      else if (k === 'sinif') e.className = ozellik[k];
+      else if (k.slice(0, 2) === 'on') e.addEventListener(k.slice(2), ozellik[k]);
+      else e.setAttribute(k, ozellik[k]);
+    }
+    for (var i = 2; i < arguments.length; i++) {
+      var c = arguments[i];
+      if (c == null || c === false) continue;
+      e.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+    }
+    return e;
+  }
+  function goster() {
+    govde.textContent = '';
+    for (var i = 0; i < arguments.length; i++) if (arguments[i]) govde.appendChild(arguments[i]);
+    window.scrollTo(0, 0);
+  }
+  function rpc(ad, veri) {
+    return fetch(API + ad, {
+      method: 'POST',
+      headers: { 'apikey': ANAHTAR, 'Content-Type': 'application/json' },
+      body: JSON.stringify(veri)
+    }).then(function (r) {
+      if (!r.ok) throw new Error('sunucu ' + r.status);
+      return r.json();
+    });
+  }
+  function sakla(anahtar, deger) { try { localStorage.setItem(anahtar, JSON.stringify(deger)); } catch (e) {} }
+  function oku(anahtar) { try { return JSON.parse(localStorage.getItem(anahtar) || 'null'); } catch (e) { return null; } }
+  function unvanSimgesi(u) { return u === 'Ruh ikizi' ? '🔮' : u === 'Yakın dost' ? '💞' : u === 'İyi arkadaş' ? '🤝' : '🌱'; }
+  function sahipAdi() { return durum.sahip || 'Arkadaşın'; }
+  function basHarf(ad) { var h = (ad || '').trim().charAt(0); return h ? h.toLocaleUpperCase('tr-TR') : '✦'; }
+
+  // Play bağlantısı: kod ve (varsa) web sonucunun anahtarı uygulamaya taşınır
+  function playLinki(token) {
+    var r = 'utm_source=aura_web&utm_medium=' + KAYNAK + (KOD ? '&kod=' + KOD : '') + (token ? '&ws=' + token : '');
+    return 'https://play.google.com/store/apps/details?id=' + PAKET + '&referrer=' + encodeURIComponent(r);
+  }
+  // Uygulama yüklüyse içinde açar (Instagram gibi uygulama içi tarayıcılar için); yoksa Play'e gider
+  function uygulamadaAcLinki() {
+    return 'intent://auratestiapp.github.io/oyna/?k=' + KOD + '#Intent;scheme=https;package=' + PAKET +
+      ';S.browser_fallback_url=' + encodeURIComponent(playLinki(null)) + ';end';
+  }
+  function indirKutusu(baslik, metin, token) {
+    var kutu = el('div', { sinif: 'davet' },
+      el('h2', { metin: baslik }),
+      el('p', { sinif: 'alt', metin: metin }),
+      el('div', { sinif: 'bosluk' }));
+    if (IOS) {
+      kutu.appendChild(el('p', { sinif: 'alt', metin: 'Aura şimdilik Android\'de; iPhone sürümü çok yakında 💜' }));
+    } else {
+      kutu.appendChild(el('a', { sinif: 'dugme', href: playLinki(token), rel: 'noopener' }, 'Aura\'yı indir · Google Play'));
+    }
+    return kutu;
+  }
+  function altNot() {
+    return el('p', { sinif: 'kucuk alt-not' },
+      'Yazdığın ad ve tahminlerin yalnız oyunun sahibine gösterilir; 90 gün sonra silinir. ',
+      el('a', { href: '../gizlilik.html', metin: 'Gizlilik' }));
+  }
+
+  // ── ekranlar ──
+  function hataEkrani(baslik, metin, indir) {
+    goster(el('div', { sinif: 'orta' },
+      el('div', { sinif: 'serif', style: 'font-size:54px', metin: '🔍' }),
+      el('div', { sinif: 'bosluk' }),
+      el('h2', { metin: baslik }),
+      el('div', { sinif: 'bosluk' }),
+      el('p', { sinif: 'alt', metin: metin }),
+      indir ? indirKutusu('Auranı keşfet ✨', 'Kişiliğini 50 karakterle keşfet, her gün kartını çek, arkadaşlarınla eğlen.', null) : null));
+  }
+
+  function davetEkrani() {
+    // Oyun henüz hazır değil: doğrudan Aura'ya davet
+    goster(el('div', { sinif: 'orta' },
+      el('div', { sinif: 'avatar' }, el('span', { metin: basHarf(durum.sahip) })),
+      el('h1', { metin: sahipAdi() + ' seni Aura\'ya davet etti 💜' }),
+      el('div', { sinif: 'bosluk' }),
+      el('p', { sinif: 'alt', metin: 'Tahmin oyunu henüz hazır değil. Aura\'yı indir, ilk kartını çek; auralarınızın ne kadar uyumlu olduğunu birlikte görün.' }),
+      indirKutusu('Auranı keşfet ✨', 'Bu düğmeyle indirip kayıt olunca ' + sahipAdi() + ' ile arkadaş olursunuz.', null)));
+  }
+
+  function girisEkrani() {
+    var alan = el('input', { sinif: 'alan', type: 'text', maxlength: '24', placeholder: 'Adın', autocomplete: 'given-name', enterkeyhint: 'go' });
+    function basla() {
+      durum.ad = alan.value.trim();
+      durum.i = 0; durum.tahmin = {}; durum.secilen = null;
+      soruEkrani();
+    }
+    alan.addEventListener('keydown', function (e) { if (e.key === 'Enter') basla(); });
+    goster(el('div', { sinif: 'orta' },
+      el('div', { sinif: 'avatar' }, el('span', { metin: basHarf(durum.sahip) })),
+      el('h1', { metin: sahipAdi() + ' seni tahmin etmeye çağırıyor' }),
+      el('div', { sinif: 'bosluk' }),
+      el('p', { sinif: 'alt', metin: 'Onu ne kadar tanıyorsun? 10 soru, 1 dakika. Kurulum yok; burada oynanır.' }),
+      el('div', { sinif: 'bosluk2' }),
+      alan,
+      el('p', { sinif: 'kucuk', style: 'margin-top:6px', metin: 'Sonucu ' + sahipAdi() + ' bu adla görecek.' }),
+      el('div', { sinif: 'bosluk' }),
+      el('button', { sinif: 'dugme', type: 'button', onclick: basla }, 'Başla'),
+      ANDROID ? el('a', { sinif: 'yazi-dugme', href: uygulamadaAcLinki() }, 'Aura yüklü mü? Uygulamada aç') : null),
+      altNot());
+  }
+
+  function soruEkrani() {
+    var s = durum.sorular[durum.i];
+    var noktalar = el('div', { sinif: 'noktalar' });
+    for (var n = 0; n < durum.sorular.length; n++) {
+      noktalar.appendChild(el('i', { sinif: (n < durum.i || (n === durum.i && durum.secilen != null)) ? 'dolu' : '' }));
+    }
+    var siklar = el('div');
+    (s.siklar || []).forEach(function (k) {
+      var secili = durum.secilen === k.id;
+      var soluk = durum.secilen != null && !secili;
+      siklar.appendChild(el('button', {
+        sinif: 'sik' + (secili ? ' secili' : '') + (soluk ? ' soluk' : ''), type: 'button',
+        onclick: function () { sec(s.id, k.id); }
+      }, k.sik_metni || ''));
+    });
+    goster(
+      el('h2', { style: 'text-align:center;margin-top:8px', metin: sahipAdi() + ' ne derdi?' }),
+      noktalar,
+      el('div', { sinif: 'soru' },
+        el('div', { sinif: 'soru-metni', metin: s.soru_metni || '' }),
+        siklar));
+  }
+
+  function sec(soruId, sikId) {
+    if (durum.secilen != null) return;
+    durum.secilen = sikId;
+    durum.tahmin[soruId] = sikId;
+    if (navigator.vibrate) try { navigator.vibrate(10); } catch (e) {}
+    soruEkrani();
+    setTimeout(function () {
+      if (durum.i + 1 >= durum.sorular.length) { bitir(); return; }
+      durum.i++; durum.secilen = null;
+      soruEkrani();
+    }, 420);
+  }
+
+  function bitir() {
+    goster(el('div', { sinif: 'orta' }, el('div', { sinif: 'yukleniyor' }),
+      el('p', { sinif: 'alt', metin: 'Tahminlerin karşılaştırılıyor…' })));
+    var tahminler = Object.keys(durum.tahmin).map(function (k) { return { soru: Number(k), sik: durum.tahmin[k] }; });
+    rpc('tahmin_oyunu_web_bitir', { p_kod: KOD, p_tahminler: tahminler, p_ad: durum.ad || null })
+      .then(function (r) {
+        if (!r || r.hata) throw new Error(r && r.hata);
+        r.sahip_ad = r.sahip_ad || durum.sahip;
+        sakla('aura_oyna_' + KOD, r);
+        sonucEkrani(r, true);
+      })
+      .catch(function () {
+        goster(el('div', { sinif: 'orta' },
+          el('h2', { metin: 'Sonuç gönderilemedi' }),
+          el('div', { sinif: 'bosluk' }),
+          el('p', { sinif: 'alt', metin: 'İnternet bağlantını kontrol edip tekrar dene.' }),
+          el('div', { sinif: 'bosluk2' }),
+          el('button', { sinif: 'dugme', type: 'button', onclick: bitir }, 'Tekrar dene')));
+      });
+  }
+
+  function sonucEkrani(r, yeni) {
+    var sahip = r.sahip_ad || sahipAdi();
+    var skor = Number(r.skor) || 0, toplam = Number(r.toplam) || 10;
+    var skorYazi = el('div', { sinif: 'skor', metin: (yeni ? 0 : skor) + '/' + toplam });
+    var kart = el('div', { sinif: 'sonuc' },
+      el('div', { sinif: 'etiket', metin: 'AURA · TAHMİN OYUNU' }),
+      el('div', { sinif: 'kim', metin: sahip + ' için tahminlerin' }),
+      skorYazi,
+      el('div', { sinif: 'unvan', metin: unvanSimgesi(r.unvan) + ' ' + (r.unvan || '') }));
+    var farklar = Array.isArray(r.farklar) ? r.farklar : [];
+    if (farklar.length) {
+      var kutu = el('div', { style: 'margin-top:16px' });
+      farklar.forEach(function (f) {
+        kutu.appendChild(el('div', { sinif: 'fark' }, 'Onu ',
+          el('b', { sinif: 'p', metin: f.sanilan_ad || '' }), ' sandın; aslında ',
+          el('b', { sinif: 'm', metin: f.gercek_ad || '' }), ' yanı ağır basıyor.'));
+      });
+      kart.appendChild(kutu);
+    } else if (r.gizli) {
+      kart.appendChild(el('p', { style: 'margin-top:14px;font-size:13.5px', metin: 'Karakter sonuçları gizli tutuluyor.' }));
+    }
+    var paylas = null;
+    if (navigator.share) {
+      paylas = el('button', { sinif: 'ikinci', type: 'button', style: 'margin-top:12px', onclick: function () {
+        navigator.share({
+          text: sahip + ' için ' + skor + '/' + toplam + ' bildim: ' + (r.unvan || '') + ' ' + unvanSimgesi(r.unvan) +
+            '\nSen de dene, onu ne kadar tanıyorsun?',
+          url: location.origin + location.pathname + '?k=' + KOD
+        }).catch(function () {});
+      } }, 'Sonucu paylaş');
+    }
+    goster(el('div', { style: 'padding-top:10px' },
+      kart,
+      paylas,
+      indirKutusu('Şimdi sıra sende ✨',
+        'Kendi auranı keşfet, arkadaşların seni tahmin etsin. Aura\'yı bu düğmeyle indirip kayıt olursan sonucun hesabına kaydedilir ve ' +
+        sahip + ' ile arkadaş olursunuz.', r.token || null)),
+      altNot());
+    if (yeni) {
+      // Skor sayarak yükselir
+      var t0 = null;
+      var adim = function (t) {
+        if (t0 == null) t0 = t;
+        var o = Math.min(1, (t - t0) / 900), e = 1 - Math.pow(1 - o, 3);
+        skorYazi.textContent = Math.round(skor * e) + '/' + toplam;
+        if (o < 1) requestAnimationFrame(adim);
+      };
+      requestAnimationFrame(adim);
+    }
+  }
+
+  // ── başlangıç ──
+  if (!KOD) {
+    hataEkrani('Link eksik görünüyor', 'Arkadaşının gönderdiği linkin tamamını açtığından emin ol.', true);
+    return;
+  }
+  var eski = oku('aura_oyna_' + KOD);
+  if (eski && typeof eski.skor === 'number') {
+    durum.sahip = eski.sahip_ad || '';
+    sonucEkrani(eski, false);
+    return;
+  }
+  rpc('tahmin_oyunu_web', { p_kod: KOD })
+    .then(function (r) {
+      durum.sahip = (r && r.sahip_ad) || '';
+      if (!r || r.hata === 'kod_yok') {
+        hataEkrani('Bu linkle bir oyun bulamadık', 'Arkadaşından linki yeniden göndermesini isteyebilirsin.', true);
+      } else if (r.hata === 'oyun_yok') {
+        davetEkrani();
+      } else if (!Array.isArray(r.sorular) || !r.sorular.length) {
+        hataEkrani('Bu oyunda soru bulunamadı', 'Birkaç gün sonra tekrar dene.', true);
+      } else {
+        durum.sorular = r.sorular;
+        girisEkrani();
+      }
+    })
+    .catch(function () {
+      hataEkrani('Oyun açılamadı', 'İnternet bağlantını kontrol edip sayfayı yenile.', false);
+    });
+})();
+</script>
+</body>
+</html>
